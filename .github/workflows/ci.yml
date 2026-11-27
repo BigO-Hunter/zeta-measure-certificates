@@ -1,0 +1,20 @@
+name: Certificate check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-bounds:
+    name: Exact rational certificate for the zeta(2)/zeta(3) measure bounds
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out the certificate
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Re-run the exact rational checks
+        run: python3 check_bounds.py
